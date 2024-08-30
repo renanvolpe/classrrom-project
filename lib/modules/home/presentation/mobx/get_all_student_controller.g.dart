@@ -25,15 +25,23 @@ mixin _$GetAllStudentsController on GetAllStudentsControllerBase, Store {
     });
   }
 
+  late final _$getStudentAsyncAction =
+      AsyncAction('GetAllStudentsControllerBase.getStudent', context: context);
+
+  @override
+  Future<List<StudentEntity>> getStudent() {
+    return _$getStudentAsyncAction.run(() => super.getStudent());
+  }
+
   late final _$GetAllStudentsControllerBaseActionController =
       ActionController(name: 'GetAllStudentsControllerBase', context: context);
 
   @override
-  void getStudent(int id) {
+  Future<dynamic> fetchUsers(int id) {
     final _$actionInfo = _$GetAllStudentsControllerBaseActionController
-        .startAction(name: 'GetAllStudentsControllerBase.getStudent');
+        .startAction(name: 'GetAllStudentsControllerBase.fetchUsers');
     try {
-      return super.getStudent(id);
+      return super.fetchUsers(id);
     } finally {
       _$GetAllStudentsControllerBaseActionController.endAction(_$actionInfo);
     }
