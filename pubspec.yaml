@@ -22,6 +22,8 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   mobx_codegen: ^2.6.1
+  flutter_mobx: ^2.2.1+1
+  
 
 
 dev_dependencies:
