@@ -1,5 +1,5 @@
 import 'package:classroom_project/modules/home/home_module.dart';
-import 'package:classroom_project/shared/app_service.dart';
+import 'package:classroom_project/core/app_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
