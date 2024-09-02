@@ -10,50 +10,31 @@ class SqliteConfig {
 
   SqliteConfig._internal();
 
-  Future<Database> getDatabase([bool? isToRecreate]) async {
-    if (_database != null) {
-      if (isToRecreate == true) {
-        await _recreateDB(_database!);
-      }
-      return _database!;
+  Database get database => _database!;
+
+  Future<void> initDatabase([bool? isToRecreate]) async {
+    if (isToRecreate == true) {
+      await _recreateDB(_database!);
     }
 
-    _database = await _initDatabase();
-    return await getDatabase(isToRecreate);
-  }
-
-  Future<Database> _initDatabase() async {
-    final databasePath = await getDatabasesPath();
-    final path = '$databasePath/classroom.db';
-
-    var openedDatabase = await openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, v) => _createDatabase(db, 1),
-    );
-
-    return openedDatabase;
-  }
-
-  Future<void> removeDatabase() async {
-    Database? db;
     try {
-      db = await _initDatabase();
+      final databasePath = await getDatabasesPath();
+      final path = '$databasePath/classroom.db';
+
+      var openedDatabase = await openDatabase(
+        path,
+        version: 1,
+        onCreate: (db, v) => _createDatabase(db, 1),
+      );
+
+      _database = openedDatabase;
+
     } catch (e) {
-      print('Error opening database: $e');
-    }
-    if (db != null) {
-      await db.close();
-      try {
-        await deleteDatabase(db.path);
-        print('Database deleted successfully.');
-      } catch (e) {
-        print('Error deleting database: $e');
-      }
+      throw Error();
     }
   }
 
-  Future<void> _recreateDB(Database database) async{
+  Future<void> _recreateDB(Database database) async {
     await _dropTables(database);
     await _createDatabase(database, 1);
   }

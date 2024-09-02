@@ -1,8 +1,10 @@
 import 'package:classroom_project/app_module.dart';
+import 'package:classroom_project/database/sqlite_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 void main() async {
+  await SqliteConfig.instance.initDatabase();
   runApp(ModularApp(
     module: AppModule(),
     child: const MyApp(),
