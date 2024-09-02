@@ -1,6 +1,5 @@
 import 'package:classroom_project/app_module.dart';
 import 'package:classroom_project/main.dart';
-import 'package:classroom_project/modules/home/presentation/screen/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,8 +12,6 @@ Widget makeTestable() => ModularApp(
 void main() {
   testWidgets('Test Home page widgets', (WidgetTester tester) async {
     await tester.pumpWidget(makeTestable());
-
-    
 
     // final btnFinder = find.byWidget(Scaffold);
     // expect(btnFinder, findsOne);

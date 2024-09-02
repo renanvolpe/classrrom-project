@@ -20,7 +20,7 @@ class _StudentPageState extends State<StudentPage> {
 
   @override
   void initState() {
-    var localDatasource = StudentLocalDataSource(sqlite: Modular.get<SqliteConfig>());
+    var localDatasource = StudentLocalDataSource( Modular.get<SqliteConfig>().database );
     var studentRepository = StudentRepositoryImpl(datasource: localDatasource);
     var getAllStudentUsecase = GetAllStudentsUsecase(repository: studentRepository);
 

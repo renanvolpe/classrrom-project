@@ -4,6 +4,8 @@ import 'package:classroom_project/modules/home/domain/repository/abstract_studen
 import 'package:classroom_project/shared/failure.dart';
 import 'package:dartz/dartz.dart';
 
+
+
 class StudentRepositoryImpl implements IStudentRepository {
   // final IStudentRemoteDataSource studentRemoteDataSource;
 
@@ -15,7 +17,7 @@ class StudentRepositoryImpl implements IStudentRepository {
   @override
   Future<Either<Failure, String>> addStudent(String name) async {
     try {
-      var response = await _studentLocalDataSource.addStudent();
+      var response = await _studentLocalDataSource.addStudent(name);
 
       return Right(response as String);
     } catch (e) {
@@ -24,8 +26,8 @@ class StudentRepositoryImpl implements IStudentRepository {
   }
 
   @override
-  Future<Either<Failure, String>> deleteStudent() async {
-    var response = await _studentLocalDataSource.deleteStudent();
+  Future<Either<Failure, String>> deleteStudent(int id) async {
+    var response = await _studentLocalDataSource.deleteStudent(id);
     return Right(response as String);
   }
 
@@ -34,15 +36,16 @@ class StudentRepositoryImpl implements IStudentRepository {
 
     try {
       var response = await _studentLocalDataSource.getAllStudents();
-      return response.fold((failure) => const Left(ServerFailure()), (success) => Right(success));
+      return response.fold((failure) => Left(failure), (success) => Right(success));
     } catch (e) {
       return Left(UnexpectedFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, StudentEntity>> getStudent() async {
-    var response = await _studentLocalDataSource.getStudent();
+  Future<Either<Failure, StudentEntity>> getStudent(int id) async {
+    var response = await _studentLocalDataSource.getStudent(id);
     return Right(response as StudentEntity);
   }
 }
+

@@ -2,7 +2,7 @@ import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/shared/failure.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../shared/abstract_use_case.dart';
+import '../../../../core/abstract_usecase.dart';
 import '../repository/abstract_student_repository.dart';
 
 class GetStudentUsecase implements IUseCase {
@@ -15,7 +15,7 @@ class GetStudentUsecase implements IUseCase {
   @override
   Future<Either<Failure, StudentEntity>> call(params) async {
     try {
-      var response = await _repository.getStudent();
+      var response = await _repository.getStudent(params);
       return Right(response as StudentEntity);
     } on ServerFailure catch (e) {
       return Left(ServerFailure(e.message));
@@ -59,7 +59,7 @@ class DeleteStudentUsecase implements IUseCase {
   @override
   Future<Either<Failure, String>> call(params) async {
     try {
-      var response = await _repository.deleteStudent();
+      var response = await _repository.deleteStudent(params);
       return Right(response as String);
     } on ServerFailure catch (e) {
       return Left(ServerFailure(e.message));
