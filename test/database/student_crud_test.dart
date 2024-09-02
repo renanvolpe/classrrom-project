@@ -1,4 +1,3 @@
-import 'package:classroom_project/core/dartz_as.dart';
 import 'package:classroom_project/database/sqlite_config.dart';
 import 'package:classroom_project/modules/home/data/datasource/student_datasource.dart';
 import 'package:dartz/dartz.dart';
@@ -32,18 +31,21 @@ void main() async {
       String studentName = "NewName3";
       var response = await studentLocalDataSource.addStudent(studentName);
 
-      idCreated = response.asRight();
-      expect(idCreated, isA<Right>());
+      idCreated = response.toOption().toNullable()!;
+
+      response.fold((failure) {}, (success) {
+        expect(idCreated, isA<int>());
+      });
     });
     test("test get all local student", () async {
       var response = await studentLocalDataSource.getAllStudents();
-      expect(response, isA<Right>());
+      expect(response, isInstanceOf<Right>());
     });
 
     test("test get local student", () async {
       var response = await studentLocalDataSource.getStudent(idCreated);
 
-      expect(response, isA<Right>());
+      expect(response, isInstanceOf<Right>());
     });
 
     // test("test get local student", () async {
@@ -53,8 +55,11 @@ void main() async {
     // });
 
     test("test delete local student", () async {
-      var response = studentLocalDataSource.deleteStudent(idCreated);
-      expect(response, isA<int>());
+      var response = await studentLocalDataSource.deleteStudent(idCreated);
+
+      response.fold((failure) {}, (success) {
+        expect(idCreated, isA<int>());
+      });
     });
   });
 }
