@@ -45,7 +45,7 @@ class _StudentPageState extends State<StudentPage> {
             builder: (_) => switch (controller.status) {
               
               (AppState.initial) => const CircularProgressIndicator(),
-              (AppState.success) =>  Text('Sucesso na requisição, quantaide de alunos: ${listStudents!.value!.length}'),
+              (AppState.success) =>  Text('Sucesso na requisição, quantaide de alunos: ${listStudents!.length}'),
               (AppState.failure) => const Text('Falha na requisição'),
               (AppState.inProgress) => const CircularProgressIndicator(),
             },

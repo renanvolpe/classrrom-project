@@ -1,7 +1,6 @@
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/home/domain/usecase/student_usecase.dart';
 import 'package:classroom_project/shared/state_mixin.dart';
-import 'package:dartz/dartz.dart';
 import 'package:mobx/mobx.dart';
 
 part 'get_all_student_controller.g.dart';
@@ -16,12 +15,11 @@ abstract class GetAllStudentsControllerBase with Store, StateMixin<GetAllStudent
   @observable
   String? errorMessage;
 
-  @observable
-  ObservableFuture<List<StudentEntity>>? userListFuture;
+  ObservableList<StudentEntity>? userListFuture;
 
 
   @action
-  void getStudent() async {
+  Future getStudent() async {
     //pressed button
     setState(AppState.inProgress);
     //get data gere
@@ -30,13 +28,12 @@ abstract class GetAllStudentsControllerBase with Store, StateMixin<GetAllStudent
     return response.fold((failure) {
       //failure
       setState(AppState.failure);
-      errorMessage = failure;
+      errorMessage = failure.message;
     }, (success) {
       //success
       setState(AppState.success);
 
-      userListFuture.value = success;
-      userListFuture = success;
+      userListFuture!.addAll(success);
     });
   }
 }
