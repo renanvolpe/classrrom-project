@@ -38,13 +38,20 @@ class GetAllStudentsUsecase implements IUseCase {
   Future<Either<Failure, List<StudentEntity>>> call(params) async {
     try {
       var response = await _repository.getAllStudents();
-      return Right(response as List<StudentEntity>);
+      return response.fold((failure) {
+        throw (failure);
+      }, (success) {
+        if (success == null || success.isEmpty) {
+          throw const UnexpectedFailure("There is no students yet");
+        }
+        return Right(success);
+      });
     } on ServerFailure catch (e) {
       return Left(ServerFailure(e.message));
     } on NetworkFailure catch (e) {
       return Left(NetworkFailure(e.message));
-    } catch (e) {
-      return Left(UnexpectedFailure(e.toString()));
+    } on UnexpectedFailure catch (e) {
+      return Left(UnexpectedFailure(e.message));
     }
   }
 }

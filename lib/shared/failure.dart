@@ -13,8 +13,7 @@ class ServerFailure extends Failure {
   const ServerFailure([String? message]);
 
   @override
-  List<Object> get props => [message]; 
-
+  List<Object> get props => [message];
 }
 
 class NetworkFailure extends Failure {
@@ -24,15 +23,15 @@ class NetworkFailure extends Failure {
   const NetworkFailure(this.message);
 
   @override
-  List<Object> get props => [message]; 
-
+  List<Object> get props => [message];
 }
 
 class UnexpectedFailure extends Failure {
   @override
   final String message;
 
-  const UnexpectedFailure(this.message);
+  const UnexpectedFailure([String? message])
+      : message = message ?? "System in Error, contact our admin to fix this issue";
 
   @override
   List<Object> get props => [message];

@@ -38,12 +38,12 @@ class _StudentPageState extends State<StudentPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        Observer(
+          Observer(
             builder: (_) => switch (controller.status) {
               (AppState.initial) => const Text("initial"),
               (AppState.success) =>
                 Text('Sucesso na requisição, quantaide de alunos: ${controller.userListFuture.length}'),
-              (AppState.failure) => const Text('Falha na requisição'),
+              (AppState.failure) => Text('Falha na requisição: ${controller.errorMessage}'),
               (AppState.inProgress) => const CircularProgressIndicator(),
             },
           ),

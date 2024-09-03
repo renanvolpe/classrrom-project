@@ -37,13 +37,17 @@ class StudentLocalDataSource implements IStudentLocalDataSource {
   }
 
   @override
-  Future<Either<Failure, List<StudentEntity>>> getAllStudents() async {
+  Future<Either<Failure, List<StudentEntity>?>> getAllStudents() async {
     try {
       final result = await _database.query(ClassroomTables.student);
-      List<StudentEntity> listStudents = result.map((json) => _toStudentEntity(json)).toList();
+      List<StudentEntity>? listStudents = result.map((json) => _toStudentEntity(json)).toList();
       return Right(listStudents);
+    }  on ServerFailure catch (e) {
+      return Left(ServerFailure(e.message));
+    } on NetworkFailure catch (e) {
+      return Left(NetworkFailure(e.message));
     } catch (e) {
-      return const Left(ServerFailure());
+      return Left(UnexpectedFailure(e.toString()));
     }
   }
 
