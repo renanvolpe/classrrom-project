@@ -1,1 +1,4 @@
-class AppService {}
+class AppService {
+  bool isLogged = false;
+
+}

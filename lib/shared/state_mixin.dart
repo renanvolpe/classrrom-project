@@ -1,16 +1,19 @@
 import 'package:mobx/mobx.dart';
+
 enum AppState { initial, inProgress, success, failure }
 
-
-mixin StateMixin<T> on Store {
+abstract class IApiCall {
   @observable
-  AppState _status = AppState.initial;
+  AppState status = AppState.initial;
 
   @computed
-  AppState get status => _status;
+  AppState get state => status;
+
+  @observable
+  String? errorMessage;
 
   @action
-  Future<void> setState(AppState newStatus) async {
-    _status = newStatus;
+  void setState(AppState newStatus) {
+    status = newStatus;
   }
 }

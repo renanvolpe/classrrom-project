@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 void main() async {
-  await SqliteConfig.instance.initDatabase();
+  WidgetsFlutterBinding.ensureInitialized();
+  await SqliteConfig.instance.initDatabase(true);
+
   runApp(ModularApp(
     module: AppModule(),
     child: const MyApp(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
             children: [
               TextButton(onPressed: () {}, child: const Text("Cursos")),
               const SizedBox(width: 40),
-              TextButton(onPressed: () {}, child: const Text("Alunos"))
+              TextButton(onPressed: () => Modular.to.pushNamed("./students"), child: const Text("Alunos"))
             ],
           )
         ],

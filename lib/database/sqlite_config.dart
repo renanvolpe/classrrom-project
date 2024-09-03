@@ -13,10 +13,6 @@ class SqliteConfig {
   Database get database => _database!;
 
   Future<void> initDatabase([bool? isToRecreate]) async {
-    if (isToRecreate == true) {
-      await _recreateDB(_database!);
-    }
-
     try {
       final databasePath = await getDatabasesPath();
       final path = '$databasePath/classroom.db';
@@ -24,11 +20,15 @@ class SqliteConfig {
       var openedDatabase = await openDatabase(
         path,
         version: 1,
-        onCreate: (db, v) => _createDatabase(db, 1),
+        onCreate:  (db, v) async => await _createDatabase(db, 1),
       );
 
       _database = openedDatabase;
 
+      if (isToRecreate == true) {
+        await _recreateDB(_database!);
+        await initDatabase();
+      }
     } catch (e) {
       throw Error();
     }
@@ -48,14 +48,15 @@ class SqliteConfig {
       print('Error dropping table: $e');
     }
   }
+  //  CREATE TABLE ${ClassroomTables.course} (
+  //         ${ClassromFields.id} ${TypeFields.idPrymaryType},
+  //         ${ClassromFields.description} ${TypeFields.varcharType},
+  //         ${ClassromFields.syllabus} ${TypeFields.textType}
+  //       );
 
   Future<void> _createDatabase(Database db, int version) async {
     String queryCreateTable = '''
-        CREATE TABLE ${ClassroomTables.course} (
-          ${ClassromFields.id} ${TypeFields.idPrymaryType},
-          ${ClassromFields.description} ${TypeFields.varcharType},
-          ${ClassromFields.syllabus} ${TypeFields.textType}
-        );
+       
 
          CREATE TABLE ${ClassroomTables.student} (
           ${ClassromFields.id} ${TypeFields.idPrymaryType},

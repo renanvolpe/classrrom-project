@@ -6,7 +6,6 @@ import 'package:classroom_project/modules/home/presentation/mobx/get_all_student
 import 'package:classroom_project/shared/state_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class StudentPage extends StatefulWidget {
   const StudentPage({super.key});
@@ -20,20 +19,18 @@ class _StudentPageState extends State<StudentPage> {
 
   @override
   void initState() {
-    var localDatasource = StudentLocalDataSource( Modular.get<SqliteConfig>().database );
+    var database = SqliteConfig.instance.database;
+    var localDatasource = StudentLocalDataSource(database);
     var studentRepository = StudentRepositoryImpl(datasource: localDatasource);
     var getAllStudentUsecase = GetAllStudentsUsecase(repository: studentRepository);
 
     controller = GetAllStudentsController(getAllStudentUsecase);
 
-    controller.getStudent();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final listStudents = controller.userListFuture;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Student Section"),
@@ -41,18 +38,22 @@ class _StudentPageState extends State<StudentPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Observer(
+        Observer(
             builder: (_) => switch (controller.status) {
-              
-              (AppState.initial) => const CircularProgressIndicator(),
-              (AppState.success) =>  Text('Sucesso na requisição, quantaide de alunos: ${listStudents!.length}'),
+              (AppState.initial) => const Text("initial"),
+              (AppState.success) =>
+                Text('Sucesso na requisição, quantaide de alunos: ${controller.userListFuture.length}'),
               (AppState.failure) => const Text('Falha na requisição'),
               (AppState.inProgress) => const CircularProgressIndicator(),
             },
           ),
           Row(
             children: [
-              TextButton(onPressed: () {}, child: const Text("Alunos")),
+              TextButton(
+                  onPressed: () {
+                    controller.getAllStudents();
+                  },
+                  child: const Text("Alunos2")),
               const SizedBox(width: 40),
             ],
           )
