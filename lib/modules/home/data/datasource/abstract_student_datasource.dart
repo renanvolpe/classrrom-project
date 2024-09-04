@@ -7,4 +7,5 @@ abstract class IStudentLocalDataSource {
   Future<Either<Failure, StudentEntity>> getStudent(int id);
   Future<Either<Failure, int>> addStudent(String studentName);
    Future<Either<Failure, int>> deleteStudent(int id);
+  Future<Either<Failure, int>> editStudent(StudentEntity student);
 }
