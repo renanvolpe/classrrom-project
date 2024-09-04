@@ -6,6 +6,7 @@ import 'package:classroom_project/modules/home/presentation/mobx/get_all_student
 import 'package:classroom_project/shared/state_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class StudentPage extends StatefulWidget {
   const StudentPage({super.key});
@@ -19,8 +20,7 @@ class _StudentPageState extends State<StudentPage> {
 
   @override
   void initState() {
-    var database = SqliteConfig.instance.database;
-    var localDatasource = StudentLocalDataSource(database);
+    var localDatasource = StudentLocalDataSource(Modular.get<SqliteConfig>());
     var studentRepository = StudentRepositoryImpl(datasource: localDatasource);
     var getAllStudentUsecase = GetAllStudentsUsecase(repository: studentRepository);
 

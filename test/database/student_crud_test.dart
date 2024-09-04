@@ -12,16 +12,15 @@ void sqfliteTestInit() {
 }
 
 void main() async {
-  late Database database;
   late StudentLocalDataSource studentLocalDataSource;
 
   sqfliteTestInit();
 
   setUpAll(() async {
+    var sqlite = SqliteConfig();
     // Maybe delete the database here
-    await SqliteConfig.instance.initDatabase();
-    database = SqliteConfig.instance.database;
-    studentLocalDataSource = StudentLocalDataSource(database);
+    await sqlite.initDatabase();
+    studentLocalDataSource = StudentLocalDataSource(sqlite);
   });
 
   group("Test all functions of crud local student", () {

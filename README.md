@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-# Feature
+# Features
 - Clean Arch
 - MobX
 - SQLite
@@ -12,6 +12,11 @@ A new Flutter project.
 - Freezed
 
 ## Layers And Responsabilities
+
+# SqliteConfig and DioService(not implemented yet)
+
+- Its are classes that its the medium  part of our code and exported data
+- Using this type class, simples errors are treat and shaped as the code request
 
 # Presentation
 - Screen

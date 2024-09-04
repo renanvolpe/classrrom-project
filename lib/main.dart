@@ -5,16 +5,27 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SqliteConfig.instance.initDatabase(true);
-
+  
   runApp(ModularApp(
     module: AppModule(),
     child: const MyApp(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void didChangeDependencies() async {
+    await Modular.get<SqliteConfig>().initDatabase();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

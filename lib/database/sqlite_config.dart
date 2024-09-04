@@ -4,11 +4,8 @@ import 'package:classroom_project/database/type_fields.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqliteConfig {
-  static final SqliteConfig instance = SqliteConfig._internal();
 
   static Database? _database;
-
-  SqliteConfig._internal();
 
   Database get database => _database!;
 

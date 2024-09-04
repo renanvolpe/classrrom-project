@@ -41,7 +41,7 @@ abstract class GetAllStudentsControllerBase with Store implements IApiCall {
     //get data here
     try {
       var response = await _usecase.call(Object());
-      return response.fold((failure) {
+      response.fold((failure) {
         setState(AppState.failure);
         errorMessage = failure.message;
       }, (success) {
