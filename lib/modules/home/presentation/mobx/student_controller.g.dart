@@ -9,22 +9,6 @@ part of 'student_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$StudentController on StudentControllerBase, Store {
-  late final _$listStudentAtom =
-      Atom(name: 'StudentControllerBase.listStudent', context: context);
-
-  @override
-  ObservableList<StudentEntity> get listStudent {
-    _$listStudentAtom.reportRead();
-    return super.listStudent;
-  }
-
-  @override
-  set listStudent(ObservableList<StudentEntity> value) {
-    _$listStudentAtom.reportWrite(value, super.listStudent, () {
-      super.listStudent = value;
-    });
-  }
-
   late final _$studentSelectedAtom =
       Atom(name: 'StudentControllerBase.studentSelected', context: context);
 
@@ -41,31 +25,26 @@ mixin _$StudentController on StudentControllerBase, Store {
     });
   }
 
-  late final _$getStudentsAsyncAction =
-      AsyncAction('StudentControllerBase.getStudents', context: context);
-
-  @override
-  Future<dynamic> getStudents(int id) {
-    return _$getStudentsAsyncAction.run(() => super.getStudents(id));
-  }
-
-  late final _$deleteStudentAsyncAction =
-      AsyncAction('StudentControllerBase.deleteStudent', context: context);
-
-  @override
-  Future<dynamic> deleteStudent(int id) {
-    return _$deleteStudentAsyncAction.run(() => super.deleteStudent(id));
-  }
-
   late final _$StudentControllerBaseActionController =
       ActionController(name: 'StudentControllerBase', context: context);
 
   @override
-  void addStudent(StudentEntity student) {
+  void getStudents(int id) {
+    final _$actionInfo = _$StudentControllerBaseActionController.startAction(
+        name: 'StudentControllerBase.getStudents');
+    try {
+      return super.getStudents(id);
+    } finally {
+      _$StudentControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addStudent(StudentEntity student, [int? index]) {
     final _$actionInfo = _$StudentControllerBaseActionController.startAction(
         name: 'StudentControllerBase.addStudent');
     try {
-      return super.addStudent(student);
+      return super.addStudent(student, index);
     } finally {
       _$StudentControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -83,7 +62,18 @@ mixin _$StudentController on StudentControllerBase, Store {
   }
 
   @override
-  dynamic editStudent(StudentEntity student) {
+  void deleteStudent(int id) {
+    final _$actionInfo = _$StudentControllerBaseActionController.startAction(
+        name: 'StudentControllerBase.deleteStudent');
+    try {
+      return super.deleteStudent(id);
+    } finally {
+      _$StudentControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void editStudent(StudentEntity student) {
     final _$actionInfo = _$StudentControllerBaseActionController.startAction(
         name: 'StudentControllerBase.editStudent');
     try {
@@ -96,7 +86,6 @@ mixin _$StudentController on StudentControllerBase, Store {
   @override
   String toString() {
     return '''
-listStudent: ${listStudent},
 studentSelected: ${studentSelected}
     ''';
   }

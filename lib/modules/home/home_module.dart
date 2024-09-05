@@ -35,10 +35,10 @@ class HomeModule extends Module {
     i.addSingleton(AddStudentController.new);
 
     i.addSingleton(EditStudentUsecase.new);
-    i.addSingleton(EditStudentController.new);
+    i.add(EditStudentController.new);
 
     i.addSingleton(DeleteStudentUsecase.new);
-    i.addSingleton(DeleteStudentController.new);
+    i.add(DeleteStudentController.new);
 
     i.addSingleton(GetStudentUsecase.new);
     i.addSingleton(GetStudentController.new);

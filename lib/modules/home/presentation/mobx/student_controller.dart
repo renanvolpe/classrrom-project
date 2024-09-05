@@ -7,19 +7,17 @@ part 'student_controller.g.dart';
 class StudentController = StudentControllerBase with _$StudentController;
 
 abstract class StudentControllerBase with Store {
-  
-  @observable
-  ObservableList<StudentEntity> listStudent = ObservableList<StudentEntity>();
+  ObservableList<StudentEntity> listStudent = ObservableList<StudentEntity>().asObservable();
 
   @observable
   StudentEntity? studentSelected;
 
   @action
-  Future getStudents(int id) async => listStudent.firstWhere((e) => e.id == id);
+  void getStudents(int id) => listStudent.firstWhere((e) => e.id == id);
 
   @action
-  void addStudent(StudentEntity student) {
-    listStudent.addAll([student]);
+  void addStudent(StudentEntity student, [int? index]) {
+    listStudent.insert(index ?? listStudent.length, student);
   }
 
   @action
@@ -31,14 +29,12 @@ abstract class StudentControllerBase with Store {
   }
 
   @action
-  Future deleteStudent(int id) async => listStudent.removeWhere((element) => element.id == id);
+  void deleteStudent(int id) => listStudent.removeWhere((element) => element.id == id);
+
   @action
-  editStudent(StudentEntity student) {
-    for (var e in listStudent) {
-      if (e.id == student.id) {
-        e = student;
-        break;
-      }
-    }
+  void editStudent(StudentEntity student) {
+    int index = listStudent.indexWhere((e) => e.id == student.id);
+    deleteStudent(student.id);
+    addStudent(student, index);
   }
 }

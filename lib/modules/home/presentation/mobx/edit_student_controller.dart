@@ -1,3 +1,4 @@
+import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
@@ -34,11 +35,11 @@ abstract class EditStudentControllerBase with Store implements IApiCall {
   String? student;
 
   @action
-  Future getStudents(int id) async {
+  Future editStudents(StudentEntity newStudent) async {
     setState(AppState.inProgress);
     await Future.delayed(const Duration(seconds: 2));
-    var response = await _usecase.call(id);
-     response.fold((failure) {
+    var response = await _usecase.call(newStudent);
+    response.fold((failure) {
       setState(AppState.failure);
       errorMessage = failure.message;
     }, (success) {

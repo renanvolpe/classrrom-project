@@ -65,12 +65,12 @@ mixin _$EditStudentController on EditStudentControllerBase, Store {
     });
   }
 
-  late final _$getStudentsAsyncAction =
-      AsyncAction('EditStudentControllerBase.getStudents', context: context);
+  late final _$editStudentsAsyncAction =
+      AsyncAction('EditStudentControllerBase.editStudents', context: context);
 
   @override
-  Future<dynamic> getStudents(int id) {
-    return _$getStudentsAsyncAction.run(() => super.getStudents(id));
+  Future<dynamic> editStudents(StudentEntity newStudent) {
+    return _$editStudentsAsyncAction.run(() => super.editStudents(newStudent));
   }
 
   late final _$EditStudentControllerBaseActionController =
