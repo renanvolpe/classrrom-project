@@ -1,4 +1,9 @@
 import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/add_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/delete_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/edit_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/get_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/screen/home_page.dart';
 import 'package:classroom_project/modules/home/presentation/screen/student_page.dart';
 import 'package:classroom_project/modules/shared/shared_module.dart';
@@ -19,10 +24,27 @@ class HomeModule extends Module {
 
   @override
   void binds(Injector i) {
+    //START - STUDENT CRUD
     i.addSingleton<IStudentLocalDataSource>(StudentLocalDataSource.new);
     i.addSingleton<IStudentRepository>(StudentRepositoryImpl.new);
+
     i.addSingleton(GetAllStudentsUsecase.new);
     i.addSingleton(GetAllStudentsController.new);
+
+    i.addSingleton(AddStudentUsecase.new);
+    i.addSingleton(AddStudentController.new);
+
+    i.addSingleton(EditStudentUsecase.new);
+    i.addSingleton(EditStudentController.new);
+
+    i.addSingleton(DeleteStudentUsecase.new);
+    i.addSingleton(DeleteStudentController.new);
+
+    i.addSingleton(GetStudentUsecase.new);
+    i.addSingleton(GetStudentController.new);
+
+    i.addSingleton(StudentController.new);
+    //FINISH - STUDENT CRUD
 
     super.binds(i);
   }

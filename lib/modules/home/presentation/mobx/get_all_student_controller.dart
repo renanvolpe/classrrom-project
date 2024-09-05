@@ -12,9 +12,6 @@ abstract class GetAllStudentsControllerBase with Store implements IApiCall {
 
   GetAllStudentsControllerBase(this._usecase);
 
-  @observable
-  ObservableList<StudentEntity> userListFuture = ObservableList<StudentEntity>();
-
   @override
   @observable
   AppState status = AppState.initial;
@@ -33,24 +30,31 @@ abstract class GetAllStudentsControllerBase with Store implements IApiCall {
     status = newStatus;
   }
 
+  @observable
+  ObservableList<StudentEntity> userListFuture = ObservableList<StudentEntity>();
+
   @action
-  Future getAllStudents() async {
+  Future<List<StudentEntity>?> getAllStudents() async {
     setState(AppState.inProgress);
 
     await Future.delayed(const Duration(seconds: 2));
     //get data here
     try {
       var response = await _usecase.call(Object());
-      response.fold((failure) {
+      return response.fold((failure) {
         setState(AppState.failure);
         errorMessage = failure.message;
+        return null;
       }, (success) {
         setState(AppState.success);
+        userListFuture.clear();
         userListFuture.addAll(success);
+        return userListFuture;
       });
     } catch (e) {
       setState(AppState.failure);
       errorMessage = e.toString();
     }
+    return null;
   }
 }

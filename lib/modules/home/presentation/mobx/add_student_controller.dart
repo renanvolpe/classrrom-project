@@ -1,3 +1,4 @@
+import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
@@ -11,7 +12,6 @@ abstract class AddStudentControllerBase with Store implements IApiCall {
   final AddStudentUsecase _usecase;
 
   AddStudentControllerBase(this._usecase);
-
 
   @override
   @observable
@@ -42,12 +42,13 @@ abstract class AddStudentControllerBase with Store implements IApiCall {
 
     var response = await _usecase.call(name);
 
-    response.fold((failure) {
+    return response.fold((failure) {
       setState(AppState.failure);
       errorMessage = failure.message;
     }, (success) {
       setState(AppState.success);
-      id = success; 
+      id = success;
+      return StudentEntity(id: id, name: name);
     });
   }
 }

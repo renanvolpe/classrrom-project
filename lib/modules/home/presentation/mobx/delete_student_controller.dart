@@ -32,8 +32,12 @@ abstract class DeleteStudentControllerBase with Store implements IApiCall {
   @observable
   String? student;
 
+  @observable
+  int idDeleting = 0;
+
   @action
   Future deleteStudent(int id) async {
+    idDeleting = id;
     setState(AppState.inProgress);
     await Future.delayed(const Duration(seconds: 2));
     var response = await _usecase.call(id);

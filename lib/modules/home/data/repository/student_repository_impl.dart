@@ -24,9 +24,13 @@ class StudentRepositoryImpl implements IStudentRepository {
   }
 
   @override
-  Future<Either<Failure, String>> deleteStudent(int id) async {
-    var response = await _studentLocalDataSource.deleteStudent(id);
-    return Right(response as String);
+  Future<Either<Failure, int?>> deleteStudent(int id) async {
+    try {
+      var response = await _studentLocalDataSource.deleteStudent(id);
+      return response.fold((failure) => Left(failure), (success) => Right(success));
+    } catch (e) {
+      return Left(UnexpectedFailure(e.toString()));
+    }
   }
 
   @override
@@ -48,10 +52,10 @@ class StudentRepositoryImpl implements IStudentRepository {
       return Left(UnexpectedFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, int>> editStudent(StudentEntity student)async {
-     var response = await _studentLocalDataSource.editStudent(student);
+  Future<Either<Failure, int>> editStudent(StudentEntity student) async {
+    var response = await _studentLocalDataSource.editStudent(student);
     try {
       return response.fold((failure) => Left(failure), (success) => Right(success));
     } catch (e) {

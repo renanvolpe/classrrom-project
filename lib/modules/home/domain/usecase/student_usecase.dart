@@ -67,7 +67,7 @@ class DeleteStudentUsecase implements IUseCase {
   Future<Either<Failure, String>> call(params) async {
     try {
       var response = await _repository.deleteStudent(params);
-      return Right(response as String);
+      return response.fold((failure) => throw failure, (success) => const Right("Succes to delete user"));
     } on ServerFailure catch (e) {
       return Left(ServerFailure(e.message));
     } on NetworkFailure catch (e) {

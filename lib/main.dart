@@ -1,11 +1,10 @@
 import 'package:classroom_project/app_module.dart';
-import 'package:classroom_project/database/sqlite_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   runApp(ModularApp(
     module: AppModule(),
     child: const MyApp(),
@@ -20,13 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  @override
-  void didChangeDependencies() async {
-    await Modular.get<SqliteConfig>().initDatabase();
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

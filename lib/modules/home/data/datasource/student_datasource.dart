@@ -27,7 +27,7 @@ class StudentLocalDataSource implements IStudentLocalDataSource {
     try {
       final newId = await _sqliteConfig.database.delete(
         ClassroomTables.student,
-        where: '$id = ?',
+        where: '${ClassromFields.id} = ?',
         whereArgs: [id],
       );
       return Right(newId);

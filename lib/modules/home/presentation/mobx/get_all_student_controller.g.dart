@@ -17,22 +17,6 @@ mixin _$GetAllStudentsController on GetAllStudentsControllerBase, Store {
               name: 'GetAllStudentsControllerBase.state'))
           .value;
 
-  late final _$userListFutureAtom = Atom(
-      name: 'GetAllStudentsControllerBase.userListFuture', context: context);
-
-  @override
-  ObservableList<StudentEntity> get userListFuture {
-    _$userListFutureAtom.reportRead();
-    return super.userListFuture;
-  }
-
-  @override
-  set userListFuture(ObservableList<StudentEntity> value) {
-    _$userListFutureAtom.reportWrite(value, super.userListFuture, () {
-      super.userListFuture = value;
-    });
-  }
-
   late final _$statusAtom =
       Atom(name: 'GetAllStudentsControllerBase.status', context: context);
 
@@ -65,12 +49,28 @@ mixin _$GetAllStudentsController on GetAllStudentsControllerBase, Store {
     });
   }
 
+  late final _$userListFutureAtom = Atom(
+      name: 'GetAllStudentsControllerBase.userListFuture', context: context);
+
+  @override
+  ObservableList<StudentEntity> get userListFuture {
+    _$userListFutureAtom.reportRead();
+    return super.userListFuture;
+  }
+
+  @override
+  set userListFuture(ObservableList<StudentEntity> value) {
+    _$userListFutureAtom.reportWrite(value, super.userListFuture, () {
+      super.userListFuture = value;
+    });
+  }
+
   late final _$getAllStudentsAsyncAction = AsyncAction(
       'GetAllStudentsControllerBase.getAllStudents',
       context: context);
 
   @override
-  Future<dynamic> getAllStudents() {
+  Future<List<StudentEntity>?> getAllStudents() {
     return _$getAllStudentsAsyncAction.run(() => super.getAllStudents());
   }
 
@@ -91,9 +91,9 @@ mixin _$GetAllStudentsController on GetAllStudentsControllerBase, Store {
   @override
   String toString() {
     return '''
-userListFuture: ${userListFuture},
 status: ${status},
 errorMessage: ${errorMessage},
+userListFuture: ${userListFuture},
 state: ${state}
     ''';
   }

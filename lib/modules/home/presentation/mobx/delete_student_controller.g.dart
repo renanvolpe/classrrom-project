@@ -65,6 +65,22 @@ mixin _$DeleteStudentController on DeleteStudentControllerBase, Store {
     });
   }
 
+  late final _$idDeletingAtom =
+      Atom(name: 'DeleteStudentControllerBase.idDeleting', context: context);
+
+  @override
+  int get idDeleting {
+    _$idDeletingAtom.reportRead();
+    return super.idDeleting;
+  }
+
+  @override
+  set idDeleting(int value) {
+    _$idDeletingAtom.reportWrite(value, super.idDeleting, () {
+      super.idDeleting = value;
+    });
+  }
+
   late final _$deleteStudentAsyncAction = AsyncAction(
       'DeleteStudentControllerBase.deleteStudent',
       context: context);
@@ -94,6 +110,7 @@ mixin _$DeleteStudentController on DeleteStudentControllerBase, Store {
 status: ${status},
 errorMessage: ${errorMessage},
 student: ${student},
+idDeleting: ${idDeleting},
 state: ${state}
     ''';
   }
