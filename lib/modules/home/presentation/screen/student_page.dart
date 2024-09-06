@@ -59,9 +59,6 @@ class _StudentPageState extends State<StudentPage> {
                   child: const Text("Search again students")),
             ],
           ),
-          const SizedBox(
-            height: 30,
-          ),
           Observer(
             builder: (_) => switch (controllerGetAll.status) {
               (AppState.initial || AppState.inProgress) => const CircularProgressIndicator(),
