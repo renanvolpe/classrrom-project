@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO APPLY  OVERLAYPORTAL HERE TO CHECK INTERNET CONNECTION
     return Scaffold(
       appBar: AppBar(
         title: const TitleHasConnection(),
