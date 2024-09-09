@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../internet/presentation/widgets/text_has_connection.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -8,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Classroom App"),
+        title: const TitleHasConnection(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
