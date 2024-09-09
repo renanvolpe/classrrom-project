@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../shared/state_mixin.dart';
+import '../../../shared/state_mixin.dart';
 import '../mobx/add_student_controller.dart';
 
 Future<dynamic> showDialogAddStudent(BuildContext context) {

@@ -25,6 +25,7 @@ dependencies:
   flutter_mobx: ^2.2.1+1
   freezed: ^2.5.7
   gap: ^3.0.1
+  connectivity_plus: any
   
 
 

@@ -1,6 +1,6 @@
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/home/domain/usecase/student_usecase.dart';
-import 'package:classroom_project/shared/state_mixin.dart';
+import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
 part 'get_all_student_controller.g.dart';

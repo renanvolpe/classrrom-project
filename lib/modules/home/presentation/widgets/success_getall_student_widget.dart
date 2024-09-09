@@ -1,6 +1,6 @@
 import 'package:classroom_project/modules/home/presentation/mobx/get_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/widgets/icon_delete_student.dart';
-import 'package:classroom_project/shared/state_mixin.dart';
+import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';

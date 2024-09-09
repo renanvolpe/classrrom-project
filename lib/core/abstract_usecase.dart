@@ -1,4 +1,4 @@
-import 'package:classroom_project/shared/failure.dart';
+import 'package:classroom_project/modules/shared/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IUseCase<Input, Output> {

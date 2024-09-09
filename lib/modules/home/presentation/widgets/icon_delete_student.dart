@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../shared/state_mixin.dart';
+import '../../../shared/state_mixin.dart';
 import '../../domain/entity/student.dart';
 import '../mobx/delete_student_controller.dart';
 import '../mobx/student_controller.dart';

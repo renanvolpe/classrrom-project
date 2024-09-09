@@ -3,7 +3,7 @@ import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/home/domain/usecase/student_usecase.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../shared/state_mixin.dart';
+import '../../../shared/state_mixin.dart';
 
 part 'get_student_controller.g.dart';
 

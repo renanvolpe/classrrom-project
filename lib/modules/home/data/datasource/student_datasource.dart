@@ -3,7 +3,7 @@ import 'package:classroom_project/database/classroom_tables.dart';
 import 'package:classroom_project/database/sqlite_config.dart';
 import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
-import 'package:classroom_project/shared/failure.dart';
+import 'package:classroom_project/modules/shared/failure.dart';
 import 'package:dartz/dartz.dart';
 
 class StudentLocalDataSource implements IStudentLocalDataSource {

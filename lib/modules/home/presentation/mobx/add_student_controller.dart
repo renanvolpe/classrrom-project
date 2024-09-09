@@ -1,5 +1,5 @@
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
-import 'package:classroom_project/shared/state_mixin.dart';
+import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../domain/usecase/student_usecase.dart';
