@@ -12,7 +12,7 @@ abstract class InternetConnectivityBase with Store {
   InternetConnectivityBase(this._connectivity);
 
   @observable
-  bool isConnected = false;
+  bool isConnected = true;
 
   @computed
   bool get hasConnection => isConnected;
@@ -27,6 +27,10 @@ abstract class InternetConnectivityBase with Store {
       isInternetConnected(result.first);
     });
   }
+
+  @action
+
+
 
   @action
   void isInternetConnected(ConnectivityResult? result) {

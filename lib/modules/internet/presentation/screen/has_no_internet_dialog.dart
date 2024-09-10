@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class InternetConnectivityDialog extends StatelessWidget {
+class InternetConnectivityDialog extends StatefulWidget {
   const InternetConnectivityDialog({super.key});
 
+  @override
+  State<InternetConnectivityDialog> createState() => _InternetConnectivityDialogState();
+}
+
+class _InternetConnectivityDialogState extends State<InternetConnectivityDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -14,7 +19,7 @@ class InternetConnectivityDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Modular.to.pop();
           },
           child: const Text('OK'),
         ),

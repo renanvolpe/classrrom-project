@@ -14,6 +14,7 @@ import 'data/repository/student_repository_impl.dart';
 import 'domain/repository/abstract_student_repository.dart';
 import 'domain/usecase/student_usecase.dart';
 import 'presentation/mobx/get_all_student_controller.dart';
+import 'presentation/widgets/overlay_internet.dart';
 
 class HomeModule extends Module {
   @override
@@ -45,6 +46,8 @@ class HomeModule extends Module {
 
     i.addSingleton(StudentController.new);
     //FINISH - STUDENT CRUD
+
+    i.addSingleton(SlidingPanelController.new);
 
     super.binds(i);
   }

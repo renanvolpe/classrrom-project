@@ -1,6 +1,8 @@
 import 'package:classroom_project/app_module.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 
 import 'modules/internet/internet_connectivity.dart';
 
@@ -21,6 +23,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final _internetConnectivity = Modular.get<InternetConnectivity>();
   @override
   void initState() {
     super.initState();
@@ -29,6 +32,15 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() async {
     await Modular.get<InternetConnectivity>().init();
+    //When has not internet, show a model that there is not intenet
+    reaction(
+      (_) => _internetConnectivity.hasConnection,
+      (isConnected) {
+        if (!isConnected) {
+          Modular.to.pushNamed('/noInternet');
+        }
+      },
+    );
     super.didChangeDependencies();
   }
 
@@ -41,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       routerConfig: Modular.routerConfig,
+      // routerDelegate: Modular.routerDelegate,
     );
   }
 }
