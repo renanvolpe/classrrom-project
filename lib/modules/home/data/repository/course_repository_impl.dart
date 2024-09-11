@@ -17,7 +17,7 @@ class CourseRepositoryImpl implements ICourseRepository {
   @override
   Future<Either<Failure, int?>> addCourse(String name) async {
     try {
-      var response = await _studentLocalDataSource.addCourse(name);
+      var response = await _studentLocalDataSource.addCourse(name, name);
 
       return response.fold((failure) => Left(failure), (success) => Right(success));
     } catch (e) {

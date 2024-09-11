@@ -13,8 +13,8 @@ class CourseLocalDataSource implements ICourseLocalDataSource {
   CourseLocalDataSource(this._sqliteConfig);
 
   @override
-  Future<Either<Failure, int>> addCourse(String courseName) async {
-    var json = {ClassromFields.name: courseName};
+  Future<Either<Failure, int>> addCourse(String description, String ementa) async {
+    var json = {ClassromFields.description: description, ClassromFields.syllabus: ementa};
     try {
       final id = await _sqliteConfig.database.insert(ClassroomTables.course, json);
       return Right(id);
@@ -84,5 +84,5 @@ class CourseLocalDataSource implements ICourseLocalDataSource {
 }
 
 CourseEntity _toCourseEntity(Map<String, Object?> json) {
-  return CourseEntity(id: json["code"] as int, descricao: json["descricao"] as String, text: json["text"] as String);
+  return CourseEntity(id: json["code"] as int, descricao: json["description"] as String, text: json["ementa"] as String);
 }

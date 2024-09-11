@@ -4,7 +4,6 @@ import 'package:classroom_project/database/type_fields.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqliteConfig {
-
   static Database? _database;
 
   Database get database => _database!;
@@ -17,8 +16,9 @@ class SqliteConfig {
       var openedDatabase = await openDatabase(
         path,
         version: 1,
-        onCreate:  (db, v) async => await _createDatabase(db, 1),
+        onCreate: (db, v) async => await _createDatabase(db, 1),
       );
+      
 
       _database = openedDatabase;
 
@@ -64,8 +64,8 @@ class SqliteConfig {
         CREATE TABLE ${ClassroomTables.courseStudent} (
          ${ClassromFields.id} ${TypeFields.idPrymaryType},
           ${ClassromFields.idStudent} ${TypeFields.idType},
-          ${ClassromFields.idCourse} ${TypeFields.idType}
-          FOREIGN KEY (${ClassromFields.idStudent} REFERENCES ${ClassroomTables.student}(${ClassromFields.id}),
+          ${ClassromFields.idCourse} ${TypeFields.idType},
+          FOREIGN KEY (${ClassromFields.idStudent}) REFERENCES ${ClassroomTables.student}(${ClassromFields.id}),
           FOREIGN KEY (${ClassromFields.idCourse}) REFERENCES ${ClassroomTables.course}(${ClassromFields.id})
         );
       ''';
