@@ -3,7 +3,7 @@ import 'package:classroom_project/modules/home/domain/usecase/student_usecase.da
 import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
-part 'get_all_student_controller.g.dart';
+part '../get_all_student_controller.g.dart';
 
 class GetAllStudentsController = GetAllStudentsControllerBase with _$GetAllStudentsController;
 

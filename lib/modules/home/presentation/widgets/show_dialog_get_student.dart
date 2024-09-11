@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 
 import '../../../shared/state_mixin.dart';
 import '../../domain/entity/student.dart';
-import '../mobx/get_student_controller.dart';
+import '../mobx/student/get_student_controller.dart';
 
 Future<dynamic> showDialogGetStudent(_, GetStudentController getStudentController, StudentEntity student) {
   var getStudentController = Modular.get<GetStudentController>();

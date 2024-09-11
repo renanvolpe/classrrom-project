@@ -1,9 +1,9 @@
 import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
-import 'package:classroom_project/modules/home/presentation/mobx/add_student_controller.dart';
-import 'package:classroom_project/modules/home/presentation/mobx/delete_student_controller.dart';
-import 'package:classroom_project/modules/home/presentation/mobx/edit_student_controller.dart';
-import 'package:classroom_project/modules/home/presentation/mobx/get_student_controller.dart';
-import 'package:classroom_project/modules/home/presentation/mobx/student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/add_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/delete_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/edit_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/get_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/screen/home_page.dart';
 import 'package:classroom_project/modules/home/presentation/screen/student_page.dart';
 import 'package:classroom_project/modules/shared/shared_module.dart';
@@ -13,7 +13,7 @@ import 'data/datasource/student_datasource.dart';
 import 'data/repository/student_repository_impl.dart';
 import 'domain/repository/abstract_student_repository.dart';
 import 'domain/usecase/student_usecase.dart';
-import 'presentation/mobx/get_all_student_controller.dart';
+import 'presentation/mobx/student/get_all_student_controller.dart';
 import 'presentation/widgets/overlay_internet.dart';
 
 class HomeModule extends Module {

@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../shared/state_mixin.dart';
 import '../../domain/entity/student.dart';
-import '../mobx/delete_student_controller.dart';
-import '../mobx/student_controller.dart';
+import '../mobx/student/delete_student_controller.dart';
+import '../mobx/student/student_controller.dart';
 
 class IconDeleteStudent extends StatelessWidget {
   const IconDeleteStudent({

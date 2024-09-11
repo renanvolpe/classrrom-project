@@ -2,16 +2,16 @@ import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../domain/usecase/student_usecase.dart';
+import '../../../domain/usecase/student_usecase.dart';
 
-part 'add_student_controller.g.dart';
+part '../edit_student_controller.g.dart';
 
-class AddStudentController = AddStudentControllerBase with _$AddStudentController;
+class EditStudentController = EditStudentControllerBase with _$EditStudentController;
 
-abstract class AddStudentControllerBase with Store implements IApiCall {
-  final AddStudentUsecase _usecase;
+abstract class EditStudentControllerBase with Store implements IApiCall {
+  final EditStudentUsecase _usecase;
 
-  AddStudentControllerBase(this._usecase);
+  EditStudentControllerBase(this._usecase);
 
   @override
   @observable
@@ -32,23 +32,19 @@ abstract class AddStudentControllerBase with Store implements IApiCall {
   }
 
   @observable
-  int id = 0;
+  String? student;
 
   @action
-  Future addStudent(String name) async {
+  Future editStudents(StudentEntity newStudent) async {
     setState(AppState.inProgress);
-
     await Future.delayed(const Duration(seconds: 2));
-
-    var response = await _usecase.call(name);
-
-    return response.fold((failure) {
+    var response = await _usecase.call(newStudent);
+    response.fold((failure) {
       setState(AppState.failure);
       errorMessage = failure.message;
     }, (success) {
       setState(AppState.success);
-      id = success;
-      return StudentEntity(id: id, name: name);
+      student = success;
     });
   }
 }

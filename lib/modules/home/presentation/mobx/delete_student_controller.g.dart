@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'delete_student_controller.dart';
+part of 'student/delete_student_controller.dart';
 
 // **************************************************************************
 // StoreGenerator

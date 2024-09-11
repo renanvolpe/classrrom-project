@@ -1,11 +1,11 @@
 
- import 'package:classroom_project/modules/home/presentation/mobx/student_controller.dart';
+ import 'package:classroom_project/modules/home/presentation/mobx/student/student_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../shared/state_mixin.dart';
-import '../mobx/add_student_controller.dart';
+import '../mobx/student/add_student_controller.dart';
 
 Future<dynamic> showDialogAddStudent(BuildContext context) {
     TextEditingController nameStudentText = TextEditingController();

@@ -45,11 +45,6 @@ class SqliteConfig {
       print('Error dropping table: $e');
     }
   }
-  //  CREATE TABLE ${ClassroomTables.course} (
-  //         ${ClassromFields.id} ${TypeFields.idPrymaryType},
-  //         ${ClassromFields.description} ${TypeFields.varcharType},
-  //         ${ClassromFields.syllabus} ${TypeFields.textType}
-  //       );
 
   Future<void> _createDatabase(Database db, int version) async {
     String queryCreateTable = '''
@@ -60,10 +55,18 @@ class SqliteConfig {
            ${ClassromFields.name} ${TypeFields.varcharType}
         );
 
+           CREATE TABLE ${ClassroomTables.course} (
+          ${ClassromFields.id} ${TypeFields.idPrymaryType},
+          ${ClassromFields.description} ${TypeFields.varcharType},
+          ${ClassromFields.syllabus} ${TypeFields.textType}
+        );
+
         CREATE TABLE ${ClassroomTables.courseStudent} (
          ${ClassromFields.id} ${TypeFields.idPrymaryType},
           ${ClassromFields.idStudent} ${TypeFields.idType},
           ${ClassromFields.idCourse} ${TypeFields.idType}
+          FOREIGN KEY (${ClassromFields.idStudent} REFERENCES ${ClassroomTables.student}(${ClassromFields.id}),
+          FOREIGN KEY (${ClassromFields.idCourse}) REFERENCES ${ClassroomTables.course}(${ClassromFields.id})
         );
       ''';
 

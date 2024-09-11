@@ -2,7 +2,7 @@
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:mobx/mobx.dart';
 
-part 'student_controller.g.dart';
+part '../student_controller.g.dart';
 
 class StudentController = StudentControllerBase with _$StudentController;
 

@@ -30,33 +30,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SlidingUpPanelWidget(
-      controller: controller,
-        feedback: const OverlayFeedback(),
-        overlay: CustomOverlay(controller: controller),
-      body: Scaffold(
-        appBar: AppBar(
-          title: const TitleHasConnection(),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("My home page"),
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                    onPressed: () {
-                      controller.open();
-                    },
-                    child: const Text("Cursos")),
-                const SizedBox(width: 40),
-                TextButton(onPressed: () => Modular.to.pushNamed("./students"), child: const Text("Alunos"))
-              ],
-            )
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const TitleHasConnection(),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("My home page"),
+          const SizedBox(height: 40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    controller.open();
+                  },
+                  child: const Text("Cursos")),
+              const SizedBox(width: 40),
+              TextButton(onPressed: () => Modular.to.pushNamed("./students"), child: const Text("Alunos"))
+            ],
+          )
+        ],
       ),
     );
   }

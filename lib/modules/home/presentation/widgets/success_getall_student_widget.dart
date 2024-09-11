@@ -1,4 +1,4 @@
-import 'package:classroom_project/modules/home/presentation/mobx/get_student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/mobx/student/get_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/widgets/icon_delete_student.dart';
 import 'package:classroom_project/modules/shared/state_mixin.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gap/gap.dart';
 
 import '../../domain/entity/student.dart';
-import '../mobx/student_controller.dart';
+import '../mobx/student/student_controller.dart';
 import 'show_dialog_edit_student.dart';
 
 class SuccessGetAllStudentWidget extends StatelessWidget {
