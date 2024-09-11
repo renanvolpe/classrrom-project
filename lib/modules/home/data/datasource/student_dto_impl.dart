@@ -1,7 +1,7 @@
 import 'package:classroom_project/database/classrom_fields.dart';
 import 'package:classroom_project/database/classroom_tables.dart';
 import 'package:classroom_project/database/sqlite_config.dart';
-import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
+import 'package:classroom_project/modules/home/data/datasource/abstract_student_dto.dart';
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/shared/failure.dart';
 import 'package:dartz/dartz.dart';

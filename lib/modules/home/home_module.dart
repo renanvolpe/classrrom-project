@@ -1,4 +1,4 @@
-import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
+import 'package:classroom_project/modules/home/data/datasource/abstract_student_dto.dart';
 import 'package:classroom_project/modules/home/presentation/mobx/student/add_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/mobx/student/delete_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/mobx/student/edit_student_controller.dart';
@@ -10,7 +10,7 @@ import 'package:classroom_project/modules/home/presentation/screen/student_page.
 import 'package:classroom_project/modules/shared/shared_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'data/datasource/student_datasource.dart';
+import 'data/datasource/student_dto_impl.dart';
 import 'data/repository/student_repository_impl.dart';
 import 'domain/repository/abstract_student_repository.dart';
 import 'domain/usecase/student_usecase.dart';
@@ -47,6 +47,10 @@ class HomeModule extends Module {
 
     i.addSingleton(StudentController.new);
     //FINISH - STUDENT CRUD
+
+    //START - COURSE CRUD
+
+    //FINISH - COURSE CRUD
 
     super.binds(i);
   }

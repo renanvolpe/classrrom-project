@@ -1,5 +1,5 @@
 import 'package:classroom_project/database/sqlite_config.dart';
-import 'package:classroom_project/modules/home/data/datasource/student_datasource.dart';
+import 'package:classroom_project/modules/home/data/datasource/student_dto_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -46,12 +46,6 @@ void main() async {
 
       expect(response, isInstanceOf<Right>());
     });
-
-    // test("test get local student", () async {
-    //   var newStudent = StudentEntity(id: idCreated, name: "updated name");
-    //   var response = await studentLocalDataSource. update(newStudent);
-    //   expect(response, isA<int>());
-    // });
 
     test("test delete local student", () async {
       var response = await studentLocalDataSource.deleteStudent(idCreated);

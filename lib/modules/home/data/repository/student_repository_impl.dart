@@ -1,4 +1,4 @@
-import 'package:classroom_project/modules/home/data/datasource/abstract_student_datasource.dart';
+import 'package:classroom_project/modules/home/data/datasource/abstract_student_dto.dart';
 import 'package:classroom_project/modules/home/domain/entity/student.dart';
 import 'package:classroom_project/modules/home/domain/repository/abstract_student_repository.dart';
 import 'package:classroom_project/modules/shared/failure.dart';
