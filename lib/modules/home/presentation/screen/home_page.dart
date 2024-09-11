@@ -1,10 +1,8 @@
-import 'package:classroom_project/modules/home/presentation/widgets/overlay_internet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../internet/internet_connectivity.dart';
 import '../../../internet/presentation/widgets/text_has_connection.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,19 +12,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var controller = Modular.get<SlidingPanelController>();
-   final hasConnection = Modular.get<InternetConnectivity>().hasConnection;
+  final hasConnection = Modular.get<InternetConnectivity>().hasConnection;
   @override
   void initState() {
-
     // hasConnection
     // Future.delayed(const Duration(seconds: 7), () {
     //   controller.open();
     // });
     super.initState();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +36,7 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                  onPressed: () {
-                    controller.open();
-                  },
-                  child: const Text("Cursos")),
+              TextButton(onPressed: () =>Modular.to.pushNamed("./course"), child: const Text("Cursos")),
               const SizedBox(width: 40),
               TextButton(onPressed: () => Modular.to.pushNamed("./students"), child: const Text("Alunos"))
             ],

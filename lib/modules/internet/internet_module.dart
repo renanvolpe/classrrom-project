@@ -7,8 +7,11 @@ import 'presentation/screen/has_no_internet_dialog.dart';
 class InternetModule extends Module {
   @override
   void exportedBinds(Injector i) {
+    
     i.add(() => Connectivity());
+    i.addSingleton(() async => await InternetConnectivity(Modular.get()).init());
     i.addSingleton(InternetConnectivity.new);
+
     super.exportedBinds(i);
   }
 

@@ -4,6 +4,7 @@ import 'package:classroom_project/modules/home/presentation/mobx/student/delete_
 import 'package:classroom_project/modules/home/presentation/mobx/student/edit_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/mobx/student/get_student_controller.dart';
 import 'package:classroom_project/modules/home/presentation/mobx/student/student_controller.dart';
+import 'package:classroom_project/modules/home/presentation/screen/couse_page.dart';
 import 'package:classroom_project/modules/home/presentation/screen/home_page.dart';
 import 'package:classroom_project/modules/home/presentation/screen/student_page.dart';
 import 'package:classroom_project/modules/shared/shared_module.dart';
@@ -14,13 +15,13 @@ import 'data/repository/student_repository_impl.dart';
 import 'domain/repository/abstract_student_repository.dart';
 import 'domain/usecase/student_usecase.dart';
 import 'presentation/mobx/student/get_all_student_controller.dart';
-import 'presentation/widgets/overlay_internet.dart';
 
 class HomeModule extends Module {
   @override
   void routes(r) {
     r.child('/', child: (context) => const HomePage());
     r.child('/students', child: (context) => const StudentPage());
+    r.child('/course', child: (context) => const CoursePage());
   }
 
   @override
@@ -46,8 +47,6 @@ class HomeModule extends Module {
 
     i.addSingleton(StudentController.new);
     //FINISH - STUDENT CRUD
-
-    i.addSingleton(SlidingPanelController.new);
 
     super.binds(i);
   }
